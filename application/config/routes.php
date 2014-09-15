@@ -38,9 +38,10 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "messages";
 $route['404_override'] = '';
 
+$route['messages/(:any)'] = 'messages/index/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
