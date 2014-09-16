@@ -12,11 +12,6 @@ class Login extends MY_Controller
     {
         parent::__construct();
 
-        if($this->session->userdata('username'))
-        {
-            redirect('messages');
-        }
-
         $this->load->model('user_model');
     }
 
@@ -32,6 +27,11 @@ class Login extends MY_Controller
             }
 
             $this->add_message('Invalid username or password.');
+        }
+
+        if($this->session->userdata('username'))
+        {
+            redirect('messages');
         }
 
         $this->load->template('login', $this->data());
