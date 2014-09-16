@@ -18,12 +18,14 @@ class Messages extends MY_Controller
 
     public function index($messageId = 0)
     {
+        /*handle delete message*/
         if($this->input->post('delete'))
         {
             $this->message_model->delete($messageId);
             $this->session->set_flashdata('success', 'The keyword was successfully deleted.');
             redirect('/');
         }
+        /* handle edit / add message */
         else if($this->input->post())
         {
             $payload = array('keyword' => $this->input->post('keyword'), 'response' => $this->input->post('response'));
@@ -45,6 +47,7 @@ class Messages extends MY_Controller
 
         }
 
+        /*build template data*/
         $message = array();
 
         if($messageId)

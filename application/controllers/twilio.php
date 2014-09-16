@@ -11,16 +11,19 @@ class Twilio extends MY_Controller
     function __construct()
     {
         parent::__construct();
+
         $this->load->model('message_model');
     }
 
     public function index()
     {
+        /*find the keyword that was posted and get response*/
         if($this->input->post('Body'))
         {
             $result = $this->message_model->get_by('keyword', $this->input->post('Body'));
             if($result)
             {
+                /*output response as XML*/
                 $this->output->set_content_type('application/xml')->set_output($this->load->view('twilio', array('response' => $result->response), true));
             }
         }

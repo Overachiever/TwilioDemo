@@ -8,6 +8,7 @@
 
 class MY_Loader extends CI_Loader
 {
+    /*custom loader for building a template*/
     public function template($template_name, $vars = array(), $return = FALSE)
     {
         $content  = $this->view('template/header', $vars['header'], $return);

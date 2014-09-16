@@ -17,6 +17,7 @@ class Login extends MY_Controller
 
     function index()
     {
+        /*handle form post*/
         if($this->input->post())
         {
             $user = $this->user_model->login($this->input->post('username'), $this->input->post('password'));
@@ -29,6 +30,7 @@ class Login extends MY_Controller
             $this->add_message('Invalid username or password.');
         }
 
+        /*if already logged in send to message page*/
         if($this->session->userdata('username'))
         {
             redirect('messages');

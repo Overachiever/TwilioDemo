@@ -24,6 +24,7 @@ class MY_Controller extends CI_Controller
             redirect('login');
         }
 
+        /*configure some default values for template variables*/
         $this->header = array(
             'messages' => array(
                 'danger' => array(),
@@ -35,6 +36,7 @@ class MY_Controller extends CI_Controller
 
         $this->footer['scripts'] = array();
 
+        /*convert flashdata to messages*/
         if($this->session->flashdata('success'))
         {
             $this->add_message($this->session->flashdata('success'), 'success');
@@ -46,16 +48,19 @@ class MY_Controller extends CI_Controller
         }
     }
 
+    /*build template variables*/
     protected function data()
     {
         return array('header' => $this->header, 'body' => $this->body, 'footer' => $this->footer);
     }
 
+    /*add danger, warning, info, success messages*/
     protected function add_message($message, $type = 'danger')
     {
         array_push($this->header['messages'][$type], $message);
     }
 
+    /*add javascript includes to footer*/
     protected function add_script($script)
     {
         array_push($this->footer['scripts'], $script);
